@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, session, redirect, url_for, flash
-from flask_script import Manager
+from flask_script import Manager, Shell
 from flask_bootstrap import Bootstrap, WebCDN, \
     ConditionalCDN, BOOTSTRAP_VERSION, JQUERY_VERSION, HTML5SHIV_VERSION, RESPONDJS_VERSION
 from flask_moment import Moment
@@ -97,7 +97,7 @@ def index():
         session['name'] = form.name.data
         return redirect(url_for('index'))
     return render_template('index.html', form=form, name=session.get('name'),
-                            known=session.get('known'), False)
+                            known=session.get('known', False))
 
 
 @app.route('/user/<name>')
