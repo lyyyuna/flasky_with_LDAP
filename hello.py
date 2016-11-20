@@ -5,7 +5,7 @@ from flask_bootstrap import Bootstrap, WebCDN, \
     ConditionalCDN, BOOTSTRAP_VERSION, JQUERY_VERSION, HTML5SHIV_VERSION, RESPONDJS_VERSION
 from flask_moment import Moment
 
-from flask_wtf import Form
+from flask_wtf import FlaskForm as Form
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 from flask_sqlalchemy import SQLAlchemy
