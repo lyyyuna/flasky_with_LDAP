@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "${workspaceRoot}/venv/Scripts/python",
+    "python.linting.pylintEnabled": false
+}
