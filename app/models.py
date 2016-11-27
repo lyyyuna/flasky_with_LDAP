@@ -16,7 +16,7 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
     default = db.Column(db.Boolean, default=False, index=True)
-    permissions = db.Column(db.Ingeter)
+    permissions = db.Column(db.Integer)
     users = db.relationship('User', backref='role', lazy='dynamic')
 
     @staticmethod
@@ -35,7 +35,7 @@ class Role(db.Model):
             role = Role.query.filter_by(name=r).first()
             if role is None:
                 role = Role(name=r)
-            role.permissons = roles[r][0]
+            role.permissions = roles[r][0]
             role.default = roles[r][1]
             db.session.add(role)
         db.session.commit()
@@ -55,7 +55,7 @@ class User(UserMixin, db.Model):
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
         if self.role is None:
-            self.role == Role.query.filter_by(default=True).first()
+            self.role = Role.query.filter_by(default=True).first()
 
     @property
     def password(self):
@@ -72,7 +72,7 @@ class User(UserMixin, db.Model):
         return self.role is not None and \
                 (self.role.permissions & permissions) == permissions
 
-    def is_administrator(self:
+    def is_administrator(self):
         return False
 
     def __repr__(self):
