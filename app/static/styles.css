@@ -63,3 +63,7 @@ div.flask-pagedown-preview h3 {
 .post-body h3 {
     font-size: 120%;
 }
+
+div.post-footer {
+    text-align: right;
+}
